@@ -16,49 +16,8 @@ app = FastAPI(
 # Root endpoint
 @app.get("/")
 async def root():
-    return {"message": "Welcome to FastAPI Store"}
+    return {"message": "Welcome to Monthly Rent Analysis"}
 
-# # Setup versioned API router and include module routers
-# api_router = APIRouter(prefix="/v1")
-# api_router.include_router(item_router)
-# api_router.include_router(order_router)
-# api_router.include_router(user_router)
 
-# # Register the master router with the app
-# app.include_router(api_router)
-
-# # Setup OAuth2 scheme for Swagger UI login flow
-# oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/v1/auth/login")
-
-# # Custom OpenAPI schema with security configuration
-# def custom_openapi():
-#     if app.openapi_schema:
-#         return app.openapi_schema
-
-#     openapi_schema = get_openapi(
-#         title=app.title,
-#         version=app.version,
-#         description=app.description,
-#         routes=app.routes,
-#     )
-
-#     # Add security scheme
-#     openapi_schema["components"]["securitySchemes"] = {
-#         "BearerAuth": {
-#             "type": "http",
-#             "scheme": "bearer",
-#             "bearerFormat": "JWT",
-#         }
-#     }
-
-#     # Apply global security requirement
-#     openapi_schema["security"] = [{"BearerAuth": []}]
-
-#     app.openapi_schema = openapi_schema
-#     return app.openapi_schema
-
-# app.openapi = custom_openapi
-
-# Run the app using Uvicorn when executed directly
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
